@@ -1,0 +1,44 @@
+<html>
+<body>
+
+<script>
+
+
+
+document.body.innerHTML = '<div id="text" style="margin: 20px; float: left; font-family: monospace; font-size: 40px; color: green;"></div>';
+document.body.style.backgroundColor = "black";
+div = document.getElementById("text");
+
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
+async function writeMsg(msg, delayTime) {
+    for (let i = 0; i < msg.length; i++) {
+        div.innerText = msg.substring(0, i+1);
+        await delay(delayTime * Math.random());
+        if (msg[i] == ',') {
+            await delay(delayTime * Math.random());
+        }
+    }
+}
+
+async function matrix() {
+    await delay(3000);
+    await writeMsg('Neo, wake up...', 400);
+    await delay(5000);
+    await writeMsg('The matrix has you.', 400);
+    await delay(5000);
+    await writeMsg('Follow the white rabbit.', 400);
+    await delay(6000);
+    await writeMsg('Knock knock, Neo.', 0);
+    await delay(10000);
+    await writeMsg(' ', 0);
+    await delay(5000);
+}
+
+matrix();
+
+</script>
+</body>
+</html>
